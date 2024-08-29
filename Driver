@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+
+
+public class Driver {
+
+	public static void main(String[] args) {
+		// Create arrayList
+		ArrayList<ItemEntry> items = new ArrayList<ItemEntry>();
+		// Create 3 items
+		Item item1 = new Book("Abarat", 40.00, "Clive Barker", "2nd", "HarperCollins", 2011);
+		Item item2 = new Book("Animalia", 15.00, "Jean Baptiste Del Amo", "10th", "Fitzcarraldo", 2019);
+		Item item3 = new MusicCD("Babymetal", 10.00, "BabyMetal", "2014-02-26", "Amuse", "earMusic", 90, "Rock");
+		
+		// Add quantity to itemEntry
+		ItemEntry entry1 = new ItemEntry(item1, 10);
+		ItemEntry entry2 = new ItemEntry(item2, 15);
+		ItemEntry entry3 = new ItemEntry(item3, 5);
+		
+
+		// Add to arrayList
+		items.add(entry1);
+		items.add(entry2);
+		items.add(entry3);
+		
+		// Iterate thru list
+		System.out.printf(" %-20s  %15s  %15s %15s \n", "Title", "Type", "Price", "Quantity");
+		System.out.println("------------------------------------------------------------------------------------------------");
+		for (ItemEntry entry: items) {
+			String type;
+			if (entry.getItem() instanceof Book) {
+				type = "book";
+			}
+			else if (entry.getItem() instanceof MusicCD) {
+				type = "music";
+			}
+			else {
+				type = "software";
+			}
+			System.out.printf(" %-20s  %15s  %15s %15s \n", entry.getItem().getTitle(), type ,entry.getItem().getPrice(), entry.getQuantity());
+		}
+		
+	}
+	
+}
